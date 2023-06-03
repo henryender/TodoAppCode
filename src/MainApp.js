@@ -15,7 +15,7 @@ function MainApp() {
     const [editId, setEditId] = useState(0)
     const [completed, setCompleted] = useState([])
     const [error, setError] = useState('')
-    
+
 
     const Addhandler = (e) => {
         // Add handler to put tasks to the field
@@ -41,7 +41,7 @@ function MainApp() {
     //Deletes elements from the Tasks List
     const deleteHandler = (id) => {
         setItem([...item.filter((x) => x.id !== id)]);
-        
+
 
     }
     // To Set the Input with the List to be Edited
@@ -67,28 +67,40 @@ function MainApp() {
     return (
         <>
             <Paper elevation={4} sx={{ width: '80%', margin: 'auto' }} >
-               
+
                 <Box width='80%' margin='auto' mt={10} >
                     <Paper elevation={3}
                         sx={{ borderRadius: "15px", backgroundColor: "lightgreen", marginBottom: '10px' }} >
                         <Typography
-                            fontFamily='cursive'
-                            fontSize={{ lg: 35, md: 30, sm: 25, xs: 30 }}
+                            sx={{ fontFamily: 'Playfair, serif' }}
+                            fontSize={{
+                                lg: 35, md: 30,
+                                sm: 25, xs: 25
+                            }}
                             textAlign='center'>
                             TODO LIST
-                            <ListAltIcon fontSize='large'
-                                sx={{ position: 'relative', top: "5px" }} />
+                            <ListAltIcon
+                                sx={{
+                                    position: 'relative', top: "5px",
+                                    fontSize: { xs: '25px', 
+                                    lg: '32px' }
+                                }}
+
+                            />
                         </Typography>
                     </Paper>
-                    <Typography style={{ textAlign: 'center', color: 'red', marginBottom: '-20px' }}>{error}</Typography>
+                    <Typography
+                        style={{
+                            textAlign: 'center', color: 'red', marginBottom: '-20px',
+                            fontFamily: 'Playfair, serif'
+                        }}>{error}</Typography>
                 </Box>
-
-
 
                 <Box
                     width={{ lg: '75%', xs: '85%' }}
                     margin="auto" mt={10} sx={{ display: 'flex' }}>
-                    <TextField label="Tasks" variant="outlined"
+                    <TextField label="Tasks"
+                        variant="outlined"
                         sx={{ marginBottom: '10px', width: "100%" }}
                         size='small'
                         onChange={(e) => setInput(e.target.value)} value={input} />
@@ -119,18 +131,16 @@ function MainApp() {
                         </Tooltip>}
                 </Box>
 
-
-
                 <Box width={{ lg: '80%', xs: '90%' }} margin="auto"
                     display={{ lg: "flex", md: 'flex', sm: 'flex' }}
                     justifyContent="space-between">
                     <Paper sx={{ width: { lg: '50%', xs: '90%' }, margin: "3%" }} >
                         <Typography
                             textAlign='center'
-                            sx={{ fontSize: { xs: '15px', lg: '20px' } }}>
+                            sx={{ fontSize: { xs: '15px', lg: '20px' },fontFamily: 'Playfair, serif' }}>
                             Tasks ({item.length})<br /><hr />
                             <span>
-                                {item?.length === 0 ? <p>No Tasks Added/ Uncompleted</p> :
+                                {item?.length === 0 ? <p style={{fontFamily: 'Playfair, serif'}}>No Tasks Added/ Uncompleted</p> :
                                     item.map((data) => {
                                         return <Box key={data.id} >
                                             <IconButton onClick={() => deleteHandler(data.id)}>
@@ -169,12 +179,14 @@ function MainApp() {
                             </span>
                         </Typography>
                     </Paper>
-                    <Typography display={{ lg: 'none' }}><br /></Typography>
+                    <Typography display={{ lg: 'none',fontFamily: 'Playfair, serif' }}><br /></Typography>
                     <Paper sx={{ width: { lg: '50%', xs: '90%' }, margin: '3%' }}>
-                        <Typography textAlign='center' sx={{ fontSize: { xs: '15px', lg: '20px' } }}>
+                        <Typography textAlign='center' 
+                        sx={{ fontSize: { xs: '15px', lg: '20px',fontFamily: 'Playfair, serif' } }}>
                             Completed ({completed.length})<br /><hr />
                             <span>
-                                {completed?.length === 0 ? <p>No Tasks Completed</p> :
+                                {completed?.length === 0 ? 
+                                <p style={{fontFamily: 'Playfair, serif'}}>No Tasks Completed</p> :
                                     completed.map((info) =>
                                         <Box key={info.id}>
                                             <Tooltip title="Delete">
@@ -188,8 +200,6 @@ function MainApp() {
                         </Typography>
                     </Paper>
                 </Box>
-
-
 
                 {
                     completed.length > 3 &&
